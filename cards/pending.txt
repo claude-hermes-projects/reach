@@ -1,0 +1,4 @@
+# Card tests that are not done yet. "python3 tests/run.py" skips these; the agent runner removes a line
+# when its card passes.
+tests/test_card_001_change_domain.py
+tests/test_card_002_people_warning.py

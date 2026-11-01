@@ -1,0 +1,35 @@
+name: Task card
+description: One change, small enough for one agent, with a test that proves it is done.
+labels: ["stage:inbox"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should be true when this is done, in plain words.
+    validations: {required: true}
+  - type: textarea
+    id: files
+    attributes:
+      label: Files you may change
+      description: One path per line. Anything else is refused at review.
+      placeholder: "app/actions.py\napp/ui/app.js"
+    validations: {required: true}
+  - type: input
+    id: test
+    attributes:
+      label: Test command
+      description: Must fail before the change and pass after it.
+      placeholder: python3 tests/run.py tests/test_card_003_example.py
+    validations: {required: true}
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Starting level
+      options: ["qwen (local, simple)", "deepseek (harder)", "claude (design, security, outside services)"]
+    validations: {required: true}
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes for the coder
+      description: Where to look, what to reuse, what not to do.

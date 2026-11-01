@@ -1,0 +1,9 @@
+#!/bin/bash
+# fake macOS keychain: one file per service in $FAKE_KC
+mkdir -p "$FAKE_KC"; cmd="$1"; shift; svc=""; pw=""
+while [ $# -gt 0 ]; do case "$1" in -s) svc="$2"; shift;; -w) if [ -n "$2" ] && [ "${2:0:1}" != "-" ]; then pw="$2"; shift; fi;; esac; shift; done
+case "$cmd" in
+ add-generic-password) printf "%s" "$pw" > "$FAKE_KC/$svc";;
+ find-generic-password) [ -f "$FAKE_KC/$svc" ] && cat "$FAKE_KC/$svc" && echo || exit 44;;
+ delete-generic-password) rm -f "$FAKE_KC/$svc";;
+esac

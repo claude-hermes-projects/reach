@@ -1,0 +1,7 @@
+#!/bin/bash
+# fake launchctl: the connector counts as running while $FAKE_KC/loaded exists
+case "$1" in
+ print) [ -f "$FAKE_KC/loaded" ];;
+ bootstrap) grep -q "TUNNEL_TOKEN" "$3" && touch "$FAKE_KC/loaded";;
+ bootout) rm -f "$FAKE_KC/loaded";;
+esac

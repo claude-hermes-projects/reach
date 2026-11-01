@@ -1,0 +1,15 @@
+name: Bug from a real run
+description: Something went wrong on a real Mac. One card per problem.
+labels: ["stage:inbox", "bug"]
+body:
+  - type: textarea
+    id: did
+    attributes: {label: What you did, description: "The button or step, e.g. Set up → step 2 → Check key."}
+    validations: {required: true}
+  - type: textarea
+    id: got
+    attributes: {label: What happened, description: The message on screen.}
+    validations: {required: true}
+  - type: textarea
+    id: log
+    attributes: {label: Technical log, description: Paste it from "Show technical log" under the message., render: text}
