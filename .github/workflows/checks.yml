@@ -15,8 +15,10 @@ jobs:
           fetch-depth: 0
       - name: Agents may not change the tests
         if: startsWith(github.head_ref, 'agent/')
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          CHANGED="$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")"
+          CHANGED="$(git diff --name-only "origin/${BASE_REF}...HEAD")"
           echo "$CHANGED"
           if echo "$CHANGED" | grep -q '^tests/\|^\.github/\|^tools-dev/'; then
             echo "::error::This agent branch changes tests, workflows or dev tools. Only the card's files may change."
